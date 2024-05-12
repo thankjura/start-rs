@@ -69,8 +69,9 @@ fn main() {
         }
         //canvas.filled_circle(x, y, 1, Color::RGB(255, 255, 255)).unwrap();
         //canvas.filled_circle(10, 10, 1, Color::RGB(255, 255, 255)).unwrap();
-        canvas.set_draw_color(Color::RGB(255, 255, 255));
-        draw_circle(canvas, x as i32, y as i32, (1.0 * star.size() / star.z()) as i32);
+        let c: u8 = (256.0*(1.0- star.z())) as u8;
+        canvas.set_draw_color(Color::RGB(c, c, c));
+        draw_circle(canvas, x as i32, y as i32, (2.0 * star.size()) as i32);
     }
 
     fn draw_circle(mut canvas: &mut WindowCanvas, x: i32, y: i32, radius: i32) {

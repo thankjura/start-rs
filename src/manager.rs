@@ -19,7 +19,8 @@ impl Manager {
 
     pub fn gen_new_star(&mut self, estimate: f64) {
         let case: f64 = self.rng.gen::<f64>();
-        if (case < estimate * 300.0) {
+        let count = (case/(estimate*10.0)) as i32;
+        for i in 0..count {
             let star = Star::new(
                 self.rng.gen_range(-1.0..=1.0),
                 self.rng.gen_range(-1.0..=1.0),
