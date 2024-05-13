@@ -58,7 +58,7 @@ fn main() {
         ::std::thread::sleep(Duration::new(0, MAIN_LOOP_TIMEOUT_NANOS));
     }
 
-    fn draw_star(mut canvas: &mut WindowCanvas, star: &Star) {
+    fn draw_star(canvas: &mut WindowCanvas, star: &Star) {
         let half_width: f64 = canvas.window().size().0 as f64 / 2.0;
         let half_height: f64 = canvas.window().size().1 as f64 / 2.0;
 
@@ -74,7 +74,7 @@ fn main() {
         draw_circle(canvas, x as i32, y as i32, (2.0 * star.size()) as i32);
     }
 
-    fn draw_circle(mut canvas: &mut WindowCanvas, x: i32, y: i32, radius: i32) {
+    fn draw_circle(canvas: &mut WindowCanvas, x: i32, y: i32, radius: i32) {
         let mut offset_x: i32 = 0;
         let mut offset_y: i32 = radius;
         let mut d: i32 = radius - 1;
@@ -87,7 +87,6 @@ fn main() {
             has_errors = canvas.draw_line(Point::new(x - offset_y, y - offset_x), Point::new(x + offset_y, y - offset_x)).is_err() || has_errors;
 
             if has_errors {
-                has_errors = false;
                 break;
             }
 
