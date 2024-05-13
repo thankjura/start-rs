@@ -59,8 +59,8 @@ fn main() {
     }
 
     fn draw_star(canvas: &mut WindowCanvas, star: &Star) {
-        let half_width: f64 = canvas.window().size().0 as f64 / 2.0;
-        let half_height: f64 = canvas.window().size().1 as f64 / 2.0;
+        let half_width: f64 = (canvas.window().size().0 >> 1) as f64;
+        let half_height: f64 = (canvas.window().size().1 >> 1) as f64;
 
         let x = (half_width + half_width * star.x() / (star.z())) as u32;
         let y = (half_height + half_height * star.y() / (star.z())) as u32;
@@ -90,14 +90,14 @@ fn main() {
                 break;
             }
 
-            if d >= 2*offset_x {
-                d -= 2*offset_x + 1;
+            if d >= offset_x << 1 {
+                d -= offset_x << 1 + 1;
                 offset_x += 1;
-            } else if d < 2 * (radius - offset_y) {
-                d += 2 * offset_y - 1;
+            } else if d < (radius - offset_y) << 1 {
+                d += offset_y << 1 - 1;
                 offset_y -= 1;
             } else {
-                d += 2 * (offset_y - offset_x - 1);
+                d += (offset_y - offset_x - 1) << 1;
                 offset_y -= 1;
                 offset_x += 1;
             }
